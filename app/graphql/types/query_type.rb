@@ -1,20 +1,17 @@
 Types::QueryType = GraphQL::ObjectType.define do
   name "Query"
-  description "The query root for this schema"
 
-  field :movie do
-    type MovieType
-    argument :id, !types.ID
-    resolve -> (obj, args, ctx) {
-      Movie.find(args[:id])
-    }
-  end
+  field :movie, Types::MovieType do
+   argument :id, !types.ID
+   resolve -> (obj, args, ctx) {
+     Movie.find(args[:id])
+   }
+ end
 
-  field :actor do
-    type ActorType
-    argument :id, !types.ID
-    resolve -> (obj, args, ctx) {
-      Actor.find(args[:id])
-    }
-  end
+ field :actor, Types::ActorType do
+   argument :id, !types.ID
+   resolve -> (obj, args, ctx) {
+     Actor.find(args[:id])
+   }
+ end
 end
